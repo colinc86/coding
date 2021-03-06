@@ -392,7 +392,12 @@ func (d *Decoder) getIntByteReader(byteLength int) (*bytes.Reader, error) {
 // checkLength checks that there are enough bytes in the buffer from the
 // decoder's offset to satisfy the given length.
 func (d *Decoder) checkLength(l int) bool {
-	return d.offset+l-1 < len(d.data)
+	if len(d.data) < 1 {
+		return false
+	}
+
+	crcLength := int(d.data[len(d.data)-1])
+	return d.offset+l-1 < len(d.data)-crcLength-1
 }
 
 // getByte gets the next byte at offset and increments offset.

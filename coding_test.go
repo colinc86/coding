@@ -86,7 +86,7 @@ func TestEndOfBufferError(t *testing.T) {
 	e.EncodeString("Hello, World!")
 	e.data = e.data[:len(e.data)-2]
 
-	d := NewDecoder(e.data)
+	d := NewDecoder(e.Data())
 	if s, err := d.DecodeString(); err != nil {
 		if err != ErrEOB {
 			t.Fatalf("Expected end of buffer error but received: %s\n", err)
@@ -99,8 +99,9 @@ func TestEndOfBufferError(t *testing.T) {
 func TestTypeMismatch(t *testing.T) {
 	e := NewEncoder()
 	e.EncodeBool(true)
+	e.EncodeString("test")
 
-	d := NewDecoder(e.data)
+	d := NewDecoder(e.Data())
 	if s, err := d.DecodeString(); err != nil {
 		if err != ErrType {
 			t.Fatalf("Expected a type mismatch error but received: %s\n", err)
