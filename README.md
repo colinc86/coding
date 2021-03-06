@@ -37,8 +37,9 @@ e := coding.NewEncoder()
 The `Encoder` type supports encoding:
 
 - [x] `bool`
-- [x] `int`, `int64`, `int32`, `int16` and `int8`
+- [x] `int`, `int64`, `int32`, `int16`, `int8`
 - [x] `uint`, `uint64`, `uint32`, `uint16`, `uint8`
+- [x] `float64`, `float32`
 - [x] `string`
 - [x] `[]byte`
 
