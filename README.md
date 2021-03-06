@@ -53,6 +53,14 @@ d, err := json.Marshal(someStruct)
 e.EncodeData(d)
 ```
 
+#### Flushing Data
+
+If you need to start over, you can call `Flush` on the encoder to clear its internal buffer.
+
+```go
+e.Flush()
+```
+
 #### Getting Encoded Data
 
 Use the `Data` function to get the encoder's encoded data. This method calculates the encoded data's CRC32 and appends the bytes to the end of the encoded data before returning it so it may be verified by a decoder.
